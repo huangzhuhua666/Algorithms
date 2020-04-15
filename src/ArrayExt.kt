@@ -6,3 +6,9 @@ fun IntArray.swap(i: Int, j: Int) {
     this[i] = this[j]
     this[j] = temp
 }
+
+fun IntArray.print() {
+    this.forEach { print("$it\t") }
+    println()
+    println()
+}
