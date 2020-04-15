@@ -1,4 +1,4 @@
-package nowcoder
+package offer
 
 import ListNode
 import java.util.*

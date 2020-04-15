@@ -1,4 +1,4 @@
-package nowcoder
+package offer
 
 /**
  * Create by hzh on 2020/3/17.
