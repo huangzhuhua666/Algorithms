@@ -38,41 +38,45 @@ fun main() {
  * 若row <= n - 1，s[i]属于第row行
  * 否则，s[i]属于2 * n - row - 2行
  */
-private fun convert1(s: String, numRows: Int): String = if (s == "" || numRows == 0) ""
-else if (numRows == 1) s
-else {
-    val array = Array(min(numRows, s.length)) { StringBuilder() }
+private fun convert1(s: String, numRows: Int): String = when {
+    s == "" || numRows == 0 -> ""
+    numRows == 1 -> s
+    else -> {
+        val array = Array(min(numRows, s.length)) { StringBuilder() }
 
-    s.forEachIndexed { index, c ->
-        val row = index % (2 * numRows - 2)
-        array[if (row <= numRows - 1) row else 2 * numRows - row - 2].append(c)
+        s.forEachIndexed { index, c ->
+            val row = index % (2 * numRows - 2)
+            array[if (row <= numRows - 1) row else 2 * numRows - row - 2].append(c)
+        }
+
+        array.reduce { acc, stringBuilder ->
+            acc.append(stringBuilder)
+        }.toString()
     }
-
-    array.reduce { acc, stringBuilder ->
-        acc.append(stringBuilder)
-    }.toString()
 }
 
 /**
  * 从左向右遍历s，当移动到最下行或移动到最上行的时候改变行方向
  */
-private fun convert2(s: String, numRows: Int): String = if (s == "" || numRows == 0) ""
-else if (numRows == 1) s
-else {
-    val array = Array(min(numRows, s.length)) { StringBuilder() }
+private fun convert2(s: String, numRows: Int): String = when {
+    s == "" || numRows == 0 -> ""
+    numRows == 1 -> s
+    else -> {
+        val array = Array(min(numRows, s.length)) { StringBuilder() }
 
-    var currRow = 0
-    var isGoDown = false
+        var currRow = 0
+        var isGoDown = false
 
-    s.forEach {
-        array[currRow].append(it)
+        s.forEach {
+            array[currRow].append(it)
 
-        if (currRow == 0 || currRow == array.size - 1) isGoDown = !isGoDown
+            if (currRow == 0 || currRow == array.size - 1) isGoDown = !isGoDown
 
-        currRow += if (isGoDown) 1 else -1
+            currRow += if (isGoDown) 1 else -1
+        }
+
+        array.reduce { acc, stringBuilder ->
+            acc.append(stringBuilder)
+        }.toString()
     }
-
-    array.reduce { acc, stringBuilder ->
-        acc.append(stringBuilder)
-    }.toString()
 }

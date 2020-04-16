@@ -30,12 +30,14 @@ fun main() {
     println(myAtoi("2147483649"))
 }
 
-private fun myAtoi(str: String): Int = if (str.trim() == "") 0
-else if (!isLegalNumStar(str.trim()[0])) 0
-else when (str.trim()[0]) {
-    '-' -> parseNum(str.trim().substring(1), true)
-    '+' -> parseNum(str.trim().substring(1), false)
-    else -> parseNum(str.trim().substring(0), false)
+private fun myAtoi(str: String): Int = when {
+    str.trim() == "" -> 0
+    !isLegalNumStar(str.trim()[0]) -> 0
+    else -> when (str.trim()[0]) {
+        '-' -> parseNum(str.trim().substring(1), true)
+        '+' -> parseNum(str.trim().substring(1), false)
+        else -> parseNum(str.trim().substring(0), false)
+    }
 }
 
 /**

@@ -19,23 +19,21 @@ fun main() {
 /**
  * 双下标，不解释
  */
-private fun maxArea(height: IntArray): Int = when (height.size < 2) {
-    true -> 0
-    false -> when (height.size == 2) {
-        true -> min(height[0], height[1])
-        false -> {
-            var result = Int.MIN_VALUE
-            var left = 0
-            var right = height.size - 1
+private fun maxArea(height: IntArray): Int = when {
+    height.size < 2 -> 0
+    height.size == 2 -> min(height[0], height[1])
+    else -> {
+        var result = Int.MIN_VALUE
+        var left = 0
+        var right = height.size - 1
 
-            while (left < right) {
-                result = max(result, min(height[left], height[right]) * (right - left))
+        while (left < right) {
+            result = max(result, min(height[left], height[right]) * (right - left))
 
-                if (height[left] <= height[right]) ++left
-                else --right
-            }
-
-            result
+            if (height[left] <= height[right]) ++left
+            else --right
         }
+
+        result
     }
 }

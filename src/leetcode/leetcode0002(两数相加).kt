@@ -31,33 +31,35 @@ fun main() {
     }
 }
 
-private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? = if (l1 == null) l2
-else if (l2 == null) l1
-else {
-    var p = l1
-    var q = l2
-    val head = ListNode(0)
-    var currNode: ListNode? = head
-    var flag = 0
+private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? = when {
+    l1 == null -> l2
+    l2 == null -> l1
+    else -> {
+        var p = l1
+        var q = l2
+        val head = ListNode(0)
+        var currNode: ListNode? = head
+        var flag = 0
 
-    while (p != null || q != null) {
-        val x = p?.value ?: 0
-        val y = q?.value ?: 0
-        val sum = x + y + flag
-        if (sum < 10) { // 无需进位
-            flag = 0
-            currNode?.next = ListNode(sum)
-        } else { // 进位
-            flag = 1
-            currNode?.next = ListNode(sum % 10)
+        while (p != null || q != null) {
+            val x = p?.value ?: 0
+            val y = q?.value ?: 0
+            val sum = x + y + flag
+            if (sum < 10) { // 无需进位
+                flag = 0
+                currNode?.next = ListNode(sum)
+            } else { // 进位
+                flag = 1
+                currNode?.next = ListNode(sum % 10)
+            }
+
+            p = p?.next
+            q = q?.next
+            currNode = currNode?.next
         }
 
-        p = p?.next
-        q = q?.next
-        currNode = currNode?.next
+        if (flag == 1) currNode?.next = ListNode(1)
+
+        head.next
     }
-
-    if (flag == 1) currNode?.next = ListNode(1)
-
-    head.next
 }
