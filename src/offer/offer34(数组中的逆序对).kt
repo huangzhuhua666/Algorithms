@@ -59,11 +59,11 @@ private fun mergeArray(array: IntArray, start: Int, mid: Int, end: Int) {
     }
 
     while (j > mid) {
-        temp[k--] = array[j--];
+        temp[k--] = array[j--]
     }
 
     while (i >= start) {
-        temp[k--] = array[i--];
+        temp[k--] = array[i--]
     }
 
     temp.forEachIndexed { index, num -> array[start + index] = num }
