@@ -14,7 +14,7 @@ import ListNode
 fun main() {
     val l1 = ListNode(2).apply {
         next = ListNode(4).apply {
-            next = ListNode(3)
+            next = ListNode(5)
         }
     }
 
@@ -35,31 +35,34 @@ private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? = when {
     l1 == null -> l2
     l2 == null -> l1
     else -> {
+        val result = ListNode(0)
+        var currNode: ListNode? = result
+
         var p = l1
         var q = l2
-        val head = ListNode(0)
-        var currNode: ListNode? = head
-        var flag = 0
 
+        var flag = false
         while (p != null || q != null) {
-            val x = p?.value ?: 0
-            val y = q?.value ?: 0
-            val sum = x + y + flag
-            if (sum < 10) { // 无需进位
-                flag = 0
-                currNode?.next = ListNode(sum)
-            } else { // 进位
-                flag = 1
-                currNode?.next = ListNode(sum % 10)
+            // 如果有进位要+1
+            val sum = (p?.value ?: 0) + (q?.value ?: 0) + if (flag) {
+                1
+            } else {
+                0
             }
+            // 是否发生了进位
+            flag = sum >= 10
+
+            currNode?.next = ListNode(sum % 10)
+            currNode = currNode?.next
 
             p = p?.next
             q = q?.next
-            currNode = currNode?.next
         }
 
-        if (flag == 1) currNode?.next = ListNode(1)
+        if (flag) {
+            currNode?.next = ListNode(1)
+        }
 
-        head.next
+        result.next
     }
 }
