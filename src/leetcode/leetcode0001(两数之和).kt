@@ -1,5 +1,7 @@
 package leetcode
 
+import print
+
 /**
  * Create by hzh on 2020/4/10.
  * 两数之和
@@ -8,7 +10,8 @@ package leetcode
  * 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。
  */
 fun main() {
-    twoSum(intArrayOf(-3, 4, 3, 90), 0).forEach(::println)
+    twoSum(intArrayOf(-3, 4, 3, 90), 0).print()
+    twoSum(intArrayOf(-3, 4, 3, 90), 7).print()
 }
 
 private fun twoSum(nums: IntArray, target: Int): IntArray {

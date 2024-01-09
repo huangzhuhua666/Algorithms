@@ -10,29 +10,29 @@ import kotlin.math.max
  */
 fun main() {
     println(lengthOfLongestSubString("abcabcbb"))
+    println(lengthOfLongestSubString("bbbbb"))
+    println(lengthOfLongestSubString("pwwkew"))
+    println(lengthOfLongestSubString(" "))
+    println(lengthOfLongestSubString(""))
+    println(lengthOfLongestSubString("a"))
+    println(lengthOfLongestSubString("au"))
+    println(lengthOfLongestSubString("tmmzuxt"))
 }
 
-private fun lengthOfLongestSubString(s: String): Int = when {
-    s.length < 2 -> s.length
-    s.length == 2 -> if (s[0] == s[1]) 1 else 2
-    else -> {
-        var result = -1
-        val map = mutableMapOf<Char, Int>()
+private fun lengthOfLongestSubString(s: String): Int {
+    var result = 0
+    val map = mutableMapOf<Char, Int>()
 
-        var index = 0
-        while (index < s.length) {
-            val c = s[index]
-            if (map.containsKey(c)) {
-                index = map[c]!!
-                map.clear()
-            } else {
-                map[c] = index
-                result = max(result, map.size)
-            }
-
-            ++index
+    var left = 0
+    s.forEachIndexed { index, c ->
+        if (map.containsKey(c)) {
+            left = max(left, (map[c] ?: 0) + 1)
         }
 
-        result
+        map[c] = index
+
+        result = max(result, index - left + 1)
     }
+
+    return result
 }
