@@ -31,6 +31,9 @@ fun main() {
     }
 }
 
+/**
+ * 两链表元素分别相加，需要考虑进位的情况，还有要考虑两个链表长度不一样的情况
+ */
 private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? = when {
     l1 == null -> l2
     l2 == null -> l1

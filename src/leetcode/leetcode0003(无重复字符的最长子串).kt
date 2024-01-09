@@ -19,6 +19,9 @@ fun main() {
     println(lengthOfLongestSubString("tmmzuxt"))
 }
 
+/**
+ * 滑动窗口，如果map有该字符的记录，则滑动窗口的left需要左移，注意不要让left右移了，例如上面"tmmzuxt"这种情况
+ */
 private fun lengthOfLongestSubString(s: String): Int {
     var result = 0
     val map = mutableMapOf<Char, Int>()

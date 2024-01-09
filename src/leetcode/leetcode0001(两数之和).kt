@@ -14,6 +14,9 @@ fun main() {
     twoSum(intArrayOf(-3, 4, 3, 90), 7).print()
 }
 
+/**
+ * map存素组元素及其对应的index，containsKey判断的是target和当前元素的差值
+ */
 private fun twoSum(nums: IntArray, target: Int): IntArray {
     val result = IntArray(2)
     val map = mutableMapOf<Int, Int>()
