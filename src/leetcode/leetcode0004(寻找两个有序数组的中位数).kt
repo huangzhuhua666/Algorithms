@@ -13,6 +13,7 @@ import kotlin.math.min
  */
 fun main() {
     println(findMedianSortedArrays(intArrayOf(1, 2), intArrayOf(3, 4, 5, 6)))
+    println(findMedianSortedArrays1(intArrayOf(1, 2), intArrayOf(3, 4, 5, 6)))
 }
 
 /**
@@ -87,4 +88,40 @@ private fun findMedianSortedArrays(nums1: IntArray, nums2: IntArray): Double {
     }
 
     return 0.0
+}
+
+/**
+ * 合并数组的方法，时间O(m + n)，空间O(m + n)
+ */
+private fun findMedianSortedArrays1(nums1: IntArray, nums2: IntArray): Double {
+    val newLen = nums1.size + nums2.size
+    val newArr = IntArray(newLen)
+
+    var nums1Index = 0
+    var nums2Index = 0
+    for (i in 0 until newLen) {
+        val num1 = nums1.getOrNull(nums1Index)
+        val num2 = nums2.getOrNull(nums2Index)
+
+        when {
+            num1 == null -> {
+                newArr[i] = num2 ?: 0
+                ++nums2Index
+            }
+            num2 == null || num1 < num2 -> {
+                newArr[i] = num1
+                ++nums1Index
+            }
+            else -> {
+                newArr[i] = num2
+                ++nums2Index
+            }
+        }
+    }
+
+    return if (newLen % 2 == 0) {
+        (newArr[newLen / 2 -1] + newArr[newLen / 2]) / 2.0
+    } else {
+        newArr[newLen / 2] * 1.0
+    }
 }
