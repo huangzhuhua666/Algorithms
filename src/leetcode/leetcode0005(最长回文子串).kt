@@ -7,8 +7,40 @@ package leetcode
  * 给定一个字符串s，找到s中最长的回文子串。你可以假设s的最大长度为 1000。
  */
 fun main() {
+    println(longestPalindrome("babad"))
+    println(longestPalindrome("a"))
     println(longestPalindrome1("babad"))
     println(longestPalindrome2("babad"))
+}
+
+/**
+ * 暴力解
+ */
+private fun longestPalindrome(s: String): String {
+    var result = ""
+    var maxLen = 0
+    for (i in s.indices) {
+        for (j in i + 1..s.length) {
+            val newStr = s.substring(i, j)
+            if (isPalindrome(newStr) && newStr.length > maxLen) {
+                maxLen = newStr.length
+                result = newStr
+            }
+        }
+    }
+
+    return result
+}
+
+private fun isPalindrome(s: String): Boolean {
+    val len = s.length
+    for (i in 0 until len / 2) {
+        if (s[i] != s[len - i - 1]) {
+            return false
+        }
+    }
+
+    return true
 }
 
 /**
