@@ -1,6 +1,7 @@
 package leetcode
 
 import ListNode
+import toListNode
 
 /**
  * Create by hzh on 2020/4/10.
@@ -12,19 +13,7 @@ import ListNode
  * 您可以假设除了数字0之外，这两个数都不会以0开头。
  */
 fun main() {
-    val l1 = ListNode(2).apply {
-        next = ListNode(4).apply {
-            next = ListNode(5)
-        }
-    }
-
-    val l2 = ListNode(5).apply {
-        next = ListNode(6).apply {
-            next = ListNode(4)
-        }
-    }
-
-    var newNum = addTwoNumbers(l1, l2)
+    var newNum = addTwoNumbers(listOf(2, 4, 5).toListNode(), listOf(5, 6, 4).toListNode())
     while (newNum != null) {
         print(newNum.value)
         newNum = newNum.next
