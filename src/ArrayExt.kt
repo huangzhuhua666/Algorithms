@@ -18,3 +18,8 @@ fun CharArray.swap(i: Int, j: Int) {
     this[i] = this[j]
     this[j] = temp
 }
+
+fun CharArray.print() {
+    this.forEach { print("$it\t") }
+    println()
+}
